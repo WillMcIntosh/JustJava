@@ -1,7 +1,5 @@
 package com.example.android.justjava;
 
-
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +11,7 @@ import java.util.Locale;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
+    int quantity = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +23,17 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int quantity = 2;
-        display(quantity);
-        displayPrice(quantity * 5);
+        int price = quantity * 5;
+        String priceMessage = "Total: $" + price;
+        priceMessage = priceMessage + "\nThank you!";
+        displayMessage(priceMessage);
     }
 
     /**
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
-        int quantity = 3;
+        quantity = quantity + 1;
         display(quantity);
     }
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
-        int quantity = 1;
+        quantity = quantity - 1;
         display(quantity);
     }
 
@@ -59,5 +59,13 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance(Locale.US).format(number));
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
     }
 }
