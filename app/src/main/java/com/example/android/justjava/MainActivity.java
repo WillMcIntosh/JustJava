@@ -57,6 +57,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
+     * This method is called when the checkboxes are clicked and updates the price
+     */
+
+    public void clickCheckbox(View view) {
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+
+        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate);
+        boolean hasChocolate = chocolateCheckBox.isChecked();
+
+        displayPrice(calculatePrice(hasWhippedCream, hasChocolate));
+    }
+
     /**
      * This method is called when the plus button is clicked.
      */

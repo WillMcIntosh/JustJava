@@ -39,9 +39,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:paddingLeft="@dimen/padding_checkbox"
-            android:text="Whipped Cream"
+            android:text="Whipped Cream    ($1)"
             android:textAllCaps="true"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:onClick="clickCheckbox"/>
 
         <CheckBox
             android:id="@+id/chocolate"
@@ -50,9 +51,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:paddingLeft="@dimen/padding_checkbox"
-            android:text="Chocolate"
+            android:text="Chocolate    ($2)"
             android:textAllCaps="true"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:onClick="clickCheckbox"/>
 
         <TextView
             android:layout_width="wrap_content"
