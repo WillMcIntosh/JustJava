@@ -1,5 +1,6 @@
 package com.example.android.justjava;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -26,40 +29,73 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream);
-        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+        if (quantity < 1 || quantity > 100) {
+            Context context = getApplicationContext();
+            CharSequence text = "Please select an amount between \n\t\t\t\t" +
+                    "1 and 100 cups of coffee.";
+            int duration = Toast.LENGTH_SHORT;
 
-        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate);
-        boolean hasChocolate = chocolateCheckBox.isChecked();
+            Toast.makeText(context, text, duration).show();
+        }
+        else {
+            CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream);
+            boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
 
-        EditText nameEntry = (EditText) findViewById(R.id.name_entry);
-        String userName = nameEntry.getText().toString();
+            CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate);
+            boolean hasChocolate = chocolateCheckBox.isChecked();
 
-        int price = calculatePrice();
-        String priceMessage = createOrderSummary(price, userName, hasWhippedCream, hasChocolate);
-        displayMessage(priceMessage);
+            EditText nameEntry = (EditText) findViewById(R.id.name_entry);
+            String userName = nameEntry.getText().toString();
+
+            int price = calculatePrice(hasWhippedCream, hasChocolate);
+            String priceMessage = createOrderSummary(price, userName, hasWhippedCream, hasChocolate);
+            displayMessage(priceMessage);
+        }
+
     }
 
     /**
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
-        quantity = quantity + 1;
-        display(quantity);
+        if (quantity == 100) {
+
+        }
+        else {
+            quantity = quantity + 1;
+            display(quantity);
+        }
+
     }
 
     /**
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
-        quantity = quantity - 1;
-        display(quantity);
+        if (quantity == 1) {
+            return;
+        }
+        else {
+            quantity = quantity - 1;
+            display(quantity);
+        }
+
     }
 
     /*
      * Calculate and return price of order
      */
-    private int calculatePrice() { return quantity * 5; }
+    private int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
+        int basePrice = 5; // price of one cup of coffee
+        if (hasWhippedCream) { // whipped cream adds $1
+            basePrice += 1;
+        }
+        if (hasChocolate) { // chocolate adds $2
+            basePrice += 2;
+        }
+
+        return quantity * basePrice;
+    }
 
     /*
      * Create summary of order
