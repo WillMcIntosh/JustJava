@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
+    /**
      * This method is called when the checkboxes are clicked and updates the price
      */
 
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is called when the plus button is clicked.
+     * Price display is updated based on quantity and checkboxes for toppings
      */
     public void increment(View view) {
         if (quantity == 100) {
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is called when the minus button is clicked.
+     * Price display is updated based on quantity and checkboxes for toppings
      */
     public void decrement(View view) {
         if (quantity == 1) {
@@ -113,8 +115,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
+    /**
      * Calculate and return price of order
+     * @param hasChocolate
+     * @param hasWhippedCream
+     * @return price of order
      */
     private int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
         int basePrice = 5; // price of one cup of coffee
@@ -128,11 +133,10 @@ public class MainActivity extends AppCompatActivity {
         return quantity * basePrice;
     }
 
-    /*
+    /**
      * Create summary of order
      * @param price of the order
-     * @param addWhipped cream for whether the user wants whipped cream or not
-     *
+     * @param userName
      * @return text summary
      */
 
@@ -142,6 +146,14 @@ public class MainActivity extends AppCompatActivity {
                 "Thank you!";
     }
 
+    /**
+     *
+     * @param price
+     * @param userName
+     * @param hasWhippedCream
+     * @param hasChocolate
+     * @return detailed order summary
+     */
     private String createOrderSummary(int price, String userName, boolean hasWhippedCream, boolean hasChocolate) {
         return  "Name: " + userName + "\n" +
                 "Add Whipped Cream? " + hasWhippedCream + "\n" +
