@@ -2,7 +2,9 @@ package com.example.android.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -23,9 +25,11 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = quantity * 5;
-        String priceMessage = "Total: $" + price;
-        priceMessage = priceMessage + "\nThank you!";
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+
+        int price = calculatePrice();
+        String priceMessage = createOrderSummary(price, hasWhippedCream);
         displayMessage(priceMessage);
     }
 
@@ -43,6 +47,27 @@ public class MainActivity extends AppCompatActivity {
     public void decrement(View view) {
         quantity = quantity - 1;
         display(quantity);
+    }
+
+    /*
+     * Calculate and return price of order
+     */
+    private int calculatePrice() { return quantity * 5; }
+
+    /*
+     * Create summary of order
+     * @param price of the order
+     * @param addWhipped cream for whether the user wants whipped cream or not
+     *
+     * @return text summary
+     */
+
+    private String createOrderSummary(int price, boolean haswhippedCream) {
+        return "Name: William \n" +
+                "Add Whipped Cream? " + haswhippedCream + "\n" +
+                "Quantity: " + quantity + "\n" +
+                "Total: $" + price + "\n" +
+                "Thank you!";
     }
 
     /**
