@@ -48,8 +48,11 @@ public class MainActivity extends AppCompatActivity {
             String userName = nameEntry.getText().toString();
 
             int price = calculatePrice(hasWhippedCream, hasChocolate);
-            String priceMessage = createOrderSummary(price, userName, hasWhippedCream, hasChocolate);
-            displayMessage(priceMessage);
+            String displayMessage = createOrderSummary(price, userName);
+            String emailMessage = createOrderSummary(price, userName, hasWhippedCream, hasChocolate);
+
+//            emailOrder(emailMessage);
+            displayMessage(displayMessage);
         }
 
     }
@@ -64,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
         else {
             quantity = quantity + 1;
             display(quantity);
+            CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream);
+            boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+
+            CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate);
+            boolean hasChocolate = chocolateCheckBox.isChecked();
+
+            displayPrice(calculatePrice(hasWhippedCream, hasChocolate));
         }
 
     }
@@ -78,6 +88,13 @@ public class MainActivity extends AppCompatActivity {
         else {
             quantity = quantity - 1;
             display(quantity);
+            CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream);
+            boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+
+            CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate);
+            boolean hasChocolate = chocolateCheckBox.isChecked();
+
+            displayPrice(calculatePrice(hasWhippedCream, hasChocolate));
         }
 
     }
@@ -104,6 +121,12 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return text summary
      */
+
+    private String createOrderSummary(int price, String userName) {
+        return  "Order sent for " + userName + "\n" +
+                "Total: $" + price + "\n" +
+                "Thank you!";
+    }
 
     private String createOrderSummary(int price, String userName, boolean hasWhippedCream, boolean hasChocolate) {
         return  "Name: " + userName + "\n" +
