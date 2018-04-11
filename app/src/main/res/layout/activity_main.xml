@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context="com.example.android.justjava.MainActivity">
 
+        <EditText
+            android:id="@+id/name_entry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="@string/name"
+            android:inputType="textCapWords"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,6 +40,17 @@
             android:layout_marginTop="16dp"
             android:paddingLeft="@dimen/padding_checkbox"
             android:text="Whipped Cream"
+            android:textAllCaps="true"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/chocolate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="@dimen/padding_checkbox"
+            android:text="Chocolate"
             android:textAllCaps="true"
             android:textSize="16sp" />
 
