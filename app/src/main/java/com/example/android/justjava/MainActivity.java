@@ -1,6 +1,8 @@
 package com.example.android.justjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -51,8 +53,26 @@ public class MainActivity extends AppCompatActivity {
             String displayMessage = createOrderSummary(price, userName);
             String emailMessage = createOrderSummary(price, userName, hasWhippedCream, hasChocolate);
 
-//            emailOrder(emailMessage);
+            emailOrder(emailMessage, userName);
             displayMessage(displayMessage);
+        }
+
+    }
+
+    /**
+     * Send an email of the order using an Intent
+     * @param message
+     * @param name
+     */
+    public void emailOrder(String message, String name) {
+        String subject = "Just Java order for " + name;
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+//        intent.putExtra(Intent.EXTRA_EMAIL, "mcintoshwilliamh@gmail.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
         }
 
     }
@@ -141,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
      */
 
     private String createOrderSummary(int price, String userName) {
-        return  "Order sent for " + userName + "\n" +
-                "Total: $" + price + "\n" +
+        return "Total: $" + price + "\n" +
+                "Order sent for " + userName + "\n" +
                 "Thank you!";
     }
 

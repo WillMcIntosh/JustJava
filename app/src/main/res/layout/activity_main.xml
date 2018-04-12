@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Toppings"
+            android:text="@string/toppings"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -39,7 +39,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:paddingLeft="@dimen/padding_checkbox"
-            android:text="Whipped Cream    ($1)"
+            android:text="@string/whipped_cream"
             android:textAllCaps="true"
             android:textSize="16sp"
             android:onClick="clickCheckbox"/>
@@ -51,7 +51,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:paddingLeft="@dimen/padding_checkbox"
-            android:text="Chocolate    ($2)"
+            android:text="@string/chocolate"
             android:textAllCaps="true"
             android:textSize="16sp"
             android:onClick="clickCheckbox"/>
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Quantity"
+            android:text="@string/quantity"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -104,24 +104,13 @@
 
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Price"
-            android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
         <TextView
             android:id="@+id/price_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="$10"
+            android:text="$10.00"
             android:textColor="#000000"
             android:textSize="16sp" />
 
